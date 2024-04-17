@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import "../index.css"
 import axios from 'axios';
-import Score from './Score';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 
 function Question() {
   const [questions, setQuestions] = useState([]);
@@ -13,11 +12,9 @@ function Question() {
   useEffect(() => {
     fetchQuestions();
   }, []);
-
-
   const fetchQuestions = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/Quiz/get/7');
+      const response = await axios.get('http://localhost:8080/Quiz/get/8');
       setQuestions(response.data);
 
     } catch (error) {
@@ -56,7 +53,7 @@ function Question() {
     }));
   
     try {
-      const response = await axios.post("http://localhost:8080/Quiz/submit/7", requestData);
+      const response = await axios.post("http://localhost:8080/Quiz/submit/8", requestData);
   
       console.log("Score",response.data)
       setScoreData(response.data);
@@ -70,12 +67,12 @@ function Question() {
   }
   return (
     
-    <div>
+    <div className='main'>
       {questions.length > 0 && currentQuestionIndex < questions.length && (
         <div>
           <h2>{`${currentQuestionIndex + 1}. ${questions[currentQuestionIndex].questionTitle}`}</h2>
           <p>{questions[currentQuestionIndex].questionText}</p>
-         <form>
+         <form className='form'>
             <input 
               type='radio' 
               name='option' 
@@ -113,17 +110,21 @@ function Question() {
             <label>{questions[currentQuestionIndex].option4}</label><br/>
           </form>
          
-          {currentQuestionIndex>0 &&<button onClick={handlePrevious}>previous</button>}
+          {currentQuestionIndex>0 &&<button onClick={handlePrevious} className='previous'>previous</button>}
 
-          {currentQuestionIndex < questions.length - 1 &&<button onClick={handleSubmit}>Next</button>}
+          {currentQuestionIndex < questions.length - 1 &&<button onClick={handleSubmit} className='next'>Next</button>}
           
           {currentQuestionIndex === questions.length - 1 && <button onClick={submit}>Submit</button>}
-          {showScore && scoreData && (
+          {
+          showScore && scoreData && (
+
             <div>
-              <h2>Score</h2>
-              <p>{scoreData}</p>
+            
+              <h2>Your Score:</h2>
+              <h3>{scoreData}</h3>
+
             </div>
-          )}
+          )}  
         </div>
       )}
     </div>

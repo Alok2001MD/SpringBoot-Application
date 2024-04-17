@@ -1,14 +1,12 @@
 import React from 'react'
 import Question from './Components/Question'
-import Score from './Components/Score'
+import Navbar from './Components/Navbar'
 
 function App() {
   return <>
+  <Navbar/>
   <Question/>
   </>
-   
-   
-  
 }
 
 export default App
