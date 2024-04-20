@@ -9,9 +9,12 @@ function Question() {
   const [showScore, setShowScore] = useState(false);
   const [scoreData, setScoreData] = useState();
 
+  //This UseEffect makes sure that it fetch the data only once when the component render it prevents refetching of data
   useEffect(() => {
     fetchQuestions();
   }, []);
+
+  //Method to fetch questions
   const fetchQuestions = async () => {
     try {
       const response = await axios.get('http://localhost:8080/Quiz/get/8');
@@ -21,7 +24,7 @@ function Question() {
       console.error('Error fetching questions:', error);
     }
   };
-
+//to fetch info from option which we have selected
   const handleOptionSelect = (option) => {
     const newResponses = [...responses];
     newResponses[currentQuestionIndex] = option;
@@ -40,9 +43,7 @@ function Question() {
     e.preventDefault();
     if (currentQuestionIndex < questions.length + 1) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
-    } else {
-      setShowScore(true);
-    }
+    } 
   };
   const submit = async (e) => {
     e.preventDefault();
@@ -51,7 +52,6 @@ function Question() {
       id: id,
       response: responses[index] 
     }));
-  
     try {
       const response = await axios.post("http://localhost:8080/Quiz/submit/8", requestData);
   
@@ -73,6 +73,7 @@ function Question() {
           <h2>{`${currentQuestionIndex + 1}. ${questions[currentQuestionIndex].questionTitle}`}</h2>
           <p>{questions[currentQuestionIndex].questionText}</p>
          <form className='form'>
+          <div className='options'>
             <input 
               type='radio' 
               name='option' 
@@ -108,13 +109,14 @@ function Question() {
               onChange={() => handleOptionSelect(questions[currentQuestionIndex].option4)} 
             />
             <label>{questions[currentQuestionIndex].option4}</label><br/>
+            </div>
           </form>
          
           {currentQuestionIndex>0 &&<button onClick={handlePrevious} className='previous'>previous</button>}
 
           {currentQuestionIndex < questions.length - 1 &&<button onClick={handleSubmit} className='next'>Next</button>}
           
-          {currentQuestionIndex === questions.length - 1 && <button onClick={submit}>Submit</button>}
+          {currentQuestionIndex === questions.length - 1 && <button onClick={submit} className='next'>Submit</button>}
           {
           showScore && scoreData && (
 

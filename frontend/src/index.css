@@ -1,6 +1,5 @@
-body{
-    /* background-color: aquamarine; */
-    background-color: white;
+
+ body{
     margin: 0px;
     padding: 0px;
 }
@@ -10,22 +9,48 @@ body{
   padding-top:20px ;
 
 }
-
-
+.logoo {
+    width: 126px; 
+    height: auto; 
+    mix-blend-mode: multiply;
+  }
 .next{
     margin-top: 18px;
     margin-left: 10px;
+    background-color: #1E40AF; 
+    color: #fff; 
+    padding: 8px 16px; 
+    border-radius: 4px; 
 }
 .previous{
     margin-top: 14px;
     margin-right: 10px;
+    background-color: #1E40AF; 
+    color: #fff; 
+    padding: 8px 16px; 
+    border-radius: 4px; 
 }
 .form{
     font-size: 25px;
+    padding-top: 20px;
+
 }
+.options input{
+    margin-bottom: 25px; /* Adjust the value as needed */
+  }
 .nav{
     height: 70px;
     background-color: aquamarine;
-    /* background-color: white; */
+  
 }
+.quiz{
+    left: 1181px;
+    position: relative;
+    bottom: 31px;
+    background-color:black; 
+    color: #fff; 
+    padding: 8px 16px; 
+    border-radius: 4px; 
 
+}
+ 
