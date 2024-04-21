@@ -1,6 +1,7 @@
 package com.alok.QuizApplication.User;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import jakarta.persistence.Id;
 
 @Entity
 @Component
+@CrossOrigin(origins = "http://localhost:3000")
 public class Register {
 
     private String name;
