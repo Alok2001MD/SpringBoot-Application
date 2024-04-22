@@ -18,7 +18,7 @@ const HeroSection = () => {
           </div>
         </div>
           <Link to={"/quiz"}>
-        <button className='bg-black text-white py-4 px-10 rounded-md hover:bg-gray-900 focus:outline-none relative left-20'>
+        <button className='bg-black text-white py-4 px-10 rounded-md hover:bg-gray-900 focus:outline-none relative left-20  mx-auto mt-7 ml-7'>
           Take a quiz
         </button>
       </Link>

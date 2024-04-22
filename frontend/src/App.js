@@ -10,6 +10,7 @@ import Navbar from './Components/Navbar'
 import { Toaster } from "react-hot-toast";
 import Footer from './Components/Footer';
 import Score from './Components/Score';
+import Contact from './Components/Contact/Contact';
 function App() {
   const [menu, setMenu] = useState(true);
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/Home" element={<Home/>}/>
           <Route path="/quiz" element={<Question />} />
           <Route path="/score" element={<Score/>}/>
+          <Route path='/contact'element={<Contact/>}/>
         </Routes>
         {menu && <Footer />}
         <Toaster />
