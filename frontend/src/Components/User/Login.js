@@ -2,12 +2,10 @@ import React, { useContext, useState } from "react";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLock2Fill } from "react-icons/ri";
 import { Link, Navigate } from "react-router-dom";
-import { FaRegUser } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../index";
-import Logo2 from "./login.webp"
-import Quizz from "../Quizz.png"
+import Quizz from "../Quizz.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,7 +15,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const  response  = await axios.post(
+      const response = await axios.post(
         "http://localhost:8080/Login",
         { email, password },
         {
@@ -27,60 +25,77 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      toast.success("Login Successfull");
-      setEmail("");
-      setPassword("");
-      setIsAuthorized(true);
-    } catch (error) {
+      console.log("response:",response);
+      if(response.data==="Login successful!"){
+        toast.success("Login Successfull");
+        setEmail("");
+        setPassword("");
+        setIsAuthorized(true);
+      }
+      else{
+        toast.error("Invalid email or password. Please try again.");
+      }
+    } 
+    catch (error) {
       toast.error(error.response.data.message);
     }
   };
 
-  if(isAuthorized){
-    return <Navigate to={'/Home'}/>
+  if (isAuthorized) {
+    return <Navigate to={"/Home"} />;
   }
 
   return (
     <>
-      <section className="authPage">
-        <div className="container">
-          <div className="header">
-            <img src={Quizz} alt="logo" />
-            <h3>Login to your account</h3>
+      <section className="bg-gray-100 min-h-screen flex justify-center ">
+        <div className="container1 flex justify-center items-center">
+          <div className="container flex flex-col justify-center bg-white py-10 px-10 rounded-lg shadow-lg">
+            <div className="header text-center mb-6">
+              <img src={Quizz} alt="logo" className="w-300 h-auto mx-auto" />
+              <h3 className="text-xl font-semibold">Login to your account</h3>
+            </div>
+            <form className="flex flex-col gap-4">
+              <div className="inputTag">
+                <label className="text-gray-600">Email Address</label>
+                <div className="relative flex items-center">
+                  <input
+                    type="email"
+                    placeholder="Example@gmail.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="inputField w-full py-2 px-4 border border-gray-300 rounded focus:outline-none "
+                  />
+                  <MdOutlineMailOutline className="relative top-0 left-3 text-gray-400" />
+                </div>
+              </div>
+              <div className="inputTag">
+                <label className="text-gray-600">Password</label>
+                <div className="relative flex items-center">
+                  <input
+                    type="password"
+                    placeholder="Your Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="inputField w-full py-2 px-4 border border-gray-300 rounded focus:outline-none "
+                  />
+                  <RiLock2Fill className="relative top-0 left-3 text-gray-400" />
+                </div>
+              </div>
+              <button
+                type="submit"
+                onClick={handleLogin}
+                className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none"
+              >
+                Login
+              </button>
+              <Link
+                to={"/Register"}
+                className="text-blue-500 mt-2 inline-block hover:underline py-2 px-4 border border-blue-500 rounded-md text-center"
+              >
+                Register Now
+              </Link>
+            </form>
           </div>
-          <form>
-            <div className="inputTag">
-              <label>Email Address</label>
-              <div>
-                <input
-                  type="email"
-                  placeholder="Example@gmail.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <MdOutlineMailOutline />
-              </div>
-            </div>
-            <div className="inputTag">
-              <label>Password</label>
-              <div>
-                <input
-                  type="password"
-                  placeholder="Your Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <RiLock2Fill />
-              </div>
-            </div>
-            <button type="submit" onClick={handleLogin}>
-              Login
-            </button>
-            <Link to={"/Register"}>Register Now</Link>
-          </form>
-        </div>
-        <div className="banner">
-          <img src={Logo2} alt="login" />
         </div>
       </section>
     </>

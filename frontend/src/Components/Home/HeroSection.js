@@ -3,58 +3,25 @@ import { useContext } from "react";
 import { Context } from "../../index";
 import { FaBuilding, FaSuitcase, FaUsers, FaUserPlus } from "react-icons/fa";
 import Logo3 from "./hero.webp"
+import { Link } from "react-router-dom";
 const HeroSection = () => {
   const {user } = useContext(Context);
-  const details = [
-    {
-      id: 1,
-      title: "1,23,441",
-      subTitle: "Live Job",
-      icon: <FaSuitcase />,
-    },
-    {
-      id: 2,
-      title: "91220",
-      subTitle: "Companies",
-      icon: <FaBuilding />,
-    },
-    {
-      id: 3,
-      title: "2,34,200",
-      subTitle: "Job Seekers",
-      icon: <FaUsers />,
-    },
-    {
-      id: 4,
-      title: "1,03,761",
-      subTitle: "Employers",
-      icon: <FaUserPlus />,
-    },
-  ];
   return (
     <>
-      <div className="heroSection">
-        <div className="container">
-          <div className="title">
-           <h1>Personalized quizzes made easy</h1>
+      <div className="heroSection flex flex-col ">
+        <div className=" container flex flex-col md:flex-row items-center justify-between">
+          <div className="title mb-8 md:mb-0 md:mr-8">
+          <h1 className="font-sans text-4xl md:text-6xl text-center md:text-left">Personalized Quizzes Made Easy</h1>
           </div>
-          <div className="image">
-            <img src={Logo3} alt="hero" />
+          <div className="image  md:w-auto md:flex-grow">
+            <img src={Logo3} alt="hero" className="w-full h-auto" />
           </div>
         </div>
-        <div className="details">
-          {details.map((element) => {
-            return (
-              <div className="card" key={element.id}>
-                <div className="icon">{element.icon}</div>
-                <div className="content">
-                  <p>{element.title}</p>
-                  <p>{element.subTitle}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+          <Link to={"/quiz"}>
+        <button className='bg-black text-white py-4 px-10 rounded-md hover:bg-gray-900 focus:outline-none relative left-20'>
+          Take a quiz
+        </button>
+      </Link>
       </div>
     </>
   );

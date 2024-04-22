@@ -28,15 +28,10 @@ public class Controllerapp {
     public String login(@RequestBody Login login) {
         Register user = userRepository.findByEmailAndPassword(login.getEmail(), login.getPassword());
 
-        if (user != null && user.getPassword().equals(login.getPassword()) && !isAuth) {
+        if (user != null && user.getPassword().equals(login.getPassword())) {
             isAuth = true;
             return "Login successful!";
-        } else {
-            if (isAuth) {
-                isAuth = false;
-                return "Already logged in ";
-            }
-            return "Invalid email or password ";
         }
+        return "Invalid email or password ";
     }
 }

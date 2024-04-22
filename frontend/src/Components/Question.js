@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import "../index.css"
 import axios from 'axios';
+import Score from './Score';
+import { useNavigate } from 'react-router-dom';
+
 
 function Question() {
   const [questions, setQuestions] = useState([]);
@@ -8,7 +11,8 @@ function Question() {
   const [responses, setResponses] = useState([]);
   const [showScore, setShowScore] = useState(false);
   const [scoreData, setScoreData] = useState();
-
+  
+  const navigate = useNavigate();
   //This UseEffect makes sure that it fetch the data only once when the component render it prevents refetching of data
   useEffect(() => {
     fetchQuestions();
@@ -58,8 +62,7 @@ function Question() {
       console.log("Score",response.data)
       setScoreData(response.data);
       setShowScore(true);
-      console.log(scoreData)
-
+      navigate("/score");
     } catch (error) {
       console.error('Error submitting quiz:', error);
     }
@@ -67,19 +70,20 @@ function Question() {
   }
   return (
     
-    <div className='main'>
+    <div className=' p-20 pt-20'>
       {questions.length > 0 && currentQuestionIndex < questions.length && (
         <div>
-          <h2>{`${currentQuestionIndex + 1}. ${questions[currentQuestionIndex].questionTitle}`}</h2>
+          <h1 className='text-2xl font-bold'>{`${currentQuestionIndex + 1}. ${questions[currentQuestionIndex].questionTitle}`}</h1>
           <p>{questions[currentQuestionIndex].questionText}</p>
-         <form className='form'>
-          <div className='options'>
+         <form className='text-lg pt-5'>
+          <div className='mb-20'>
             <input 
               type='radio' 
               name='option' 
               value={questions[currentQuestionIndex].option1} 
               checked={responses[currentQuestionIndex] === questions[currentQuestionIndex].option1} 
               onChange={() => handleOptionSelect(questions[currentQuestionIndex].option1)} 
+              className='mb-6'
             />
             <label>{questions[currentQuestionIndex].option1}</label><br/>
             
@@ -89,6 +93,7 @@ function Question() {
               value={questions[currentQuestionIndex].option2} 
               checked={responses[currentQuestionIndex] === questions[currentQuestionIndex].option2} 
               onChange={() => handleOptionSelect(questions[currentQuestionIndex].option2)} 
+              className='mb-6'
             />
             <label>{questions[currentQuestionIndex].option2}</label><br/>
             
@@ -98,6 +103,7 @@ function Question() {
               value={questions[currentQuestionIndex].option3} 
               checked={responses[currentQuestionIndex] === questions[currentQuestionIndex].option3} 
               onChange={() => handleOptionSelect(questions[currentQuestionIndex].option3)} 
+              className='mb-6'
             />
             <label>{questions[currentQuestionIndex].option3}</label><br/>
             
@@ -107,26 +113,21 @@ function Question() {
               value={questions[currentQuestionIndex].option4} 
               checked={responses[currentQuestionIndex] === questions[currentQuestionIndex].option4} 
               onChange={() => handleOptionSelect(questions[currentQuestionIndex].option4)} 
+              className='mb-6'
             />
             <label>{questions[currentQuestionIndex].option4}</label><br/>
             </div>
           </form>
          
-          {currentQuestionIndex>0 &&<button onClick={handlePrevious} className='previous'>previous</button>}
+          {currentQuestionIndex>0 &&<button onClick={handlePrevious} className="bg-blue-700 text-white rounded-md py-2 px-2">previous</button>}
 
-          {currentQuestionIndex < questions.length - 1 &&<button onClick={handleSubmit} className='next'>Next</button>}
+          {currentQuestionIndex < questions.length - 1 &&<button onClick={handleSubmit} className="mt-18 ml-10 bg-blue-700 text-white py-2 px-4 rounded-md">Next</button>}
+       
           
-          {currentQuestionIndex === questions.length - 1 && <button onClick={submit} className='next'>Submit</button>}
-          {
-          showScore && scoreData && (
+          {currentQuestionIndex === questions.length - 1 && <button onClick={submit} className="mt-18 ml-10 bg-blue-700 text-white py-2 px-4 rounded-md">Submit</button>}
+        
 
-            <div>
-            
-              <h2>Your Score:</h2>
-              <h3>{scoreData}</h3>
-
-            </div>
-          )}  
+          {showScore && scoreData && <Score data={scoreData}/>}  
         </div>
       )}
     </div>

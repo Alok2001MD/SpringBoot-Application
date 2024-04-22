@@ -1,6 +1,17 @@
+ 
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
  body{
     margin: 0px;
     padding: 0px;
+    scroll-behavior: smooth;
+    scrollbar-width: none; 
+  -ms-overflow-style: none;
+
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 .main
 {
@@ -37,16 +48,20 @@
 .options input{
     margin-bottom: 25px; /* Adjust the value as needed */
   }
-nav {
-  background-color: aquamarine;
-  padding: 0 20px;
-}
+
 nav .container {
   max-width: 1500px;
   min-width: 1500px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  /* background-color: rgb(39, 37, 37); */
+
+}
+
+.container1{
+  /* position: fixed; */
 }
 @media (max-width: 1520px) {
   nav .container {
@@ -75,128 +90,6 @@ nav .container {
   cursor: pointer;
 
 }
-.authPage {
-    display: flex;
-    min-width: 1500px;
-    max-width: 1500px;
-    margin: 0 auto;
-    min-height: 100vh;
-  }
-  .authPage .container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: #fff;
-    padding: 20px 20px;
-  }
-  .authPage .container .header {
-    display: flex;
-    gap: 15px;
-    flex-direction: column;
-  }
-  .authPage .container .header h3 {
-    font-size: 1.6rem;
-  }
-  .authPage .container .header img {
-    width: 300px;
-    height: 120px;
-    margin: 0 auto;
-  }
-  .authPage .container .header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  .authPage .container form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .authPage .container form .inputTag {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .authPage .container form .inputTag div {
-    display: flex;
-    align-items: center;
-    border-radius: 7px;
-  }
-  .authPage .container form .inputTag div input,
-  .authPage .container form .inputTag div select {
-    background: #87878778;
-    padding: 8px;
-    border: none;
-    width: 100%;
-    height: 100%;
-  }
-  .authPage .container form .inputTag div input:focus,
-  .authPage .container form .inputTag div select:focus {
-    outline: none;
-  }
-  .authPage .container form .inputTag div svg {
-    width: 10%;
-    font-size: 1.5rem;
-    background: #2d5649;
-    height: 100%;
-    padding: 8px;
-    color: #fff;
-  }
-  .authPage .container form button {
-    padding: 12px;
-    text-align: center;
-    border: none;
-    margin-top: 25px;
-    font-weight: 700;
-    color: #fff;
-    background: #2d5649;
-    font-size: 1.2rem;
-    border-radius: 7px;
-  }
-  .authPage .container form a {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #2d5649;
-    margin-top: 25px;
-    font-weight: 700;
-    color: #2d5649;
-    font-size: 1.2rem;
-    text-decoration: none;
-    border-radius: 7px;
-  }
-  .authPage .banner {
-    flex: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow-y: hidden;
-  }
-  .authPage .banner img {
-    width: 100%;
-    width: 550px;
-    height: 550px;
-  }
-  @media (max-width: 1520px) {
-    .authPage {
-      min-width: 100%;
-    }
-  }
-  @media (max-width: 830px) {
-    .authPage {
-      min-height: 100vh;
-      height: auto;
-    }
-    .authPage .container {
-      flex: none;
-      width: 100%;
-      justify-content: flex-start;
-      padding: 40px 20px;
-    }
-    .authPage .banner {
-      flex: none;
-      display: none;
-    }
-  }
   .categories {
     min-width: 1500px;
     max-width: 1500px;
@@ -293,9 +186,6 @@ nav .container {
   .heroSection .container .title h1 {
     font-size: 103px;
     max-width: 900px;
-    /* color: #1c1b1b; */
-    /* font-weight: 900; */
-    /* line-height: 1.2; */
     margin-bottom: 1.5rem;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
@@ -399,101 +289,53 @@ nav .container {
       max-width: 100%;
     }
   }
-  @media (max-width: 1130px) {
-  .page {
-    padding-top: 120px;
+  .populartag{
+    display: flex;
+   justify-content: center;
+
   }
-  nav {
-    position: fixed;
-    width: 100%;
-    left: 0;
-    top: 0;
-    z-index: 10;
+  .footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
   }
-  nav .hamburger {
-    display: block;
-    font-size: 35px;
-    color: #f1f3f6;
+  
+  .logo img {
+    display: flex;
+    height: 50px; /* Adjust the height as needed */
+    position: relative;
+    top: 40px;
+
   }
-  nav .container {
-    align-items: center;
+  
+  .social-icons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+    position: relative;
+    right: 40px;
   }
-  .menu {
-    position: fixed;
-    top: 120px;
-    background: #f1f3f6;
-    left: -100%;
-    transition: all 0.3s;
-    width: 400px;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    gap: 30px;
-    align-items: flex-start;
-    padding-left: 25px;
+  .social-icons section {
+    display: flex;
+    justify-content: end;
+    position: relative;
+    bottom: 40px;
+    left: 80px;
   }
-  nav .show-menu {
-    position: fixed;
-    top: 120px;
-    background: #f1f3f6;
-    transition: all 0.3s;
-    left: 0;
-    width: 400px;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    gap: 30px;
-    align-items: flex-start;
-    padding-left: 25px;
-    box-shadow: 9px 0px 16px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 9px 0px 16px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 9px 0px 16px 0px rgba(0, 0, 0, 0.75);
+  
+  .social-icons a {
+    color: #fff;
+    margin-right: 20px;
+    font-size: 24px;
+    transition: color 0.3s ease; /* Smooth transition on hover */
   }
-  nav .show-menu li a {
-    color: #184235;
-    font-weight: 600;
+  
+  .social-icons a:hover {
+    color: #00aced; /* Change to the color of your choice */
   }
-  nav .show-menu button {
-    color: #184235;
-    border: 1px solid #184235;
-    font-weight: 600;
-  }
-  nav .show-menu button:hover {
-    background: #18191c;
-    color: #f1f3f6;
-  }
-}
-@media (max-width: 490px) {
-  nav .menu {
-    width: 100%;
-  }
-}
-/* Nav  */
-@media (max-width: 1130px) {
+  
  
-  nav {
-    position: fixed;
-    width: 100%;
-    left: 0;
-    top: 0;
-    z-index: 10;
-  }
-  nav .container {
-    align-items: center;
-  }
-}
-@media screen and (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .quiz {
-    margin-top: 10px;
-  }
-}
-
-
 
   
  

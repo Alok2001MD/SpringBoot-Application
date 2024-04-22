@@ -1,56 +1,60 @@
 import React from "react";
-import {
-  MdOutlineDesignServices,
-  MdOutlineWebhook,
-  MdAccountBalance,
-  MdOutlineAnimation,
-} from "react-icons/md";
-import { TbAppsFilled } from "react-icons/tb";
+import { FaPython } from "react-icons/fa";
 import { FaReact } from "react-icons/fa";
-import { GiArtificialIntelligence } from "react-icons/gi";
-import { IoGameController } from "react-icons/io5";
-
+import { FaJava ,FaNodeJs} from "react-icons/fa";
+import { GrCloudSoftware } from "react-icons/gr";
+import { SiSpring } from "react-icons/si";
+import { FaAws } from "react-icons/fa";
 const PopularCategories = () => {
   const categories = [
     {
       id: 1,
-      title: "Graphics & Design",
-      subTitle: "305 Open Positions",
-      icon: <MdOutlineDesignServices />,
+      title: "Java",
+      icon: <FaJava />,
     },
     {
       id: 2,
-      title: "Mobile App Development",
-      subTitle: "500 Open Positions",
-      icon: <TbAppsFilled />,
+      title: "Python",
+      icon: <FaPython />,
     },
     {
       id: 3,
-      title: "Frontend Web Development",
-      subTitle: "200 Open Positions",
-      icon: <MdOutlineWebhook />,
+      title: "C++",
+      icon: <GrCloudSoftware />,
     },
     {
       id: 4,
-      title: "MERN STACK Development",
-      subTitle: "1000+ Open Postions",
+      title: "React Js",
       icon: <FaReact />,
     },
     {
       id: 5,
-      title: "Account & Finance",
-      subTitle: "150 Open Positions",
-      icon: <MdAccountBalance />,
+      title: "Spring Boot",
+      icon: <SiSpring/>,
     },
     {
-      id: 6,
-      title: "Artificial Intelligence",
-      subTitle: "867 Open Positions",
-      icon: <GiArtificialIntelligence />,
+      id:6,
+      title:"Node Js",
+      icon:<FaNodeJs />
+
+    },
+    {
+       id:7,
+       title:"CPP",
+       icon:<GrCloudSoftware />
+    },
+    {
+      id: 7,
+      title: "AWS ",
+
+      icon: <FaAws />,
     },
   ];
   return (
     <div className="categories">
+      <div className="populartag">
+        <h1 className="text-2xl font-bold">Popular Categories</h1>
+      </div>
       <div className="banner">
         {categories.map((element) => {
           return (

@@ -8,6 +8,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Question from './Components/Question'
 import Navbar from './Components/Navbar'
 import { Toaster } from "react-hot-toast";
+import Footer from './Components/Footer';
+import Score from './Components/Score';
 function App() {
   const [menu, setMenu] = useState(true);
 
@@ -22,17 +24,19 @@ function App() {
   }, [window.location.pathname]);
   return <>
    <BrowserRouter>
-       {menu && <Navbar />}
+       {menu&&<Navbar />}
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/Home" element={<Home/>}/>
           <Route path="/quiz" element={<Question />} />
+          <Route path="/score" element={<Score/>}/>
         </Routes>
+        {menu && <Footer />}
         <Toaster />
       </BrowserRouter>
     </>
-
+    
 }
 
 export default App
