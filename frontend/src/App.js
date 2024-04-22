@@ -8,15 +8,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Question from './Components/Question'
 import Navbar from './Components/Navbar'
 import { Toaster } from "react-hot-toast";
-
-
-
 function App() {
   const [menu, setMenu] = useState(true);
+
   
   useEffect(() => {
     const pathname = window.location.pathname;
-    if (pathname === "/login" || pathname === "/register") {
+    if (pathname === "/" || pathname === "/register") {
       setMenu(false);
     } else {
       setMenu(true);
@@ -26,9 +24,9 @@ function App() {
    <BrowserRouter>
        {menu && <Navbar />}
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/" element={<Home/>}/>
+          <Route path="/Home" element={<Home/>}/>
           <Route path="/quiz" element={<Question />} />
         </Routes>
         <Toaster />

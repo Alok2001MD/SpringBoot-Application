@@ -36,7 +36,7 @@ const HeroSection = () => {
       <div className="heroSection">
         <div className="container">
           <div className="title">
-           <h1>The quiz maker  easy, fun and customizable</h1>
+           <h1>Personalized quizzes made easy</h1>
           </div>
           <div className="image">
             <img src={Logo3} alt="hero" />
